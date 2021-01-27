@@ -1,0 +1,31 @@
+ng new /// project
+ng add @angular/material // select custom,,,,yes to and other  questions "set up global......"
+generate desired theme from https://www.nikhilwalvekar.com/ng-mat-theme-generator/
+paste the generated export code into "styles.scss"
+enclose the defined light and dark theme into a class light and dark mode 
+    // this lets the angular material components like nav and side bar chopse the defined colours and apply them.
+    also include a color and background-color so as to change the text in the component when the dark theme is selected.
+    
+import  the following modules in app.modules.ts 
+        "BrowserModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
+    MatSidenavModule,
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,"
+
+generate service for the theme "theme"
+create a "dialog" component
+
+import these in the "theme.service.ts" from @angular/core....."Renderer2, RendererFactory2"
+inject Renderer2 in the consructor
+
+create helper functions to set and get color themes from the local storage
+create initialization function for when the component loads
+
+*****check code for other changed made*****
+
+generate the toolbar html element and add the logic in the typsecript file
+inject the themeservice in app.component.ts file
