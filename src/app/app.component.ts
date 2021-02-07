@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 
-
-import { ThemeService } from './theme.service';
-
-// import { DialogComponent } from './dialog/dialog.component';
+import { ThemeService } from "./shared/theme.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = 'dark-theme-yt';
+  title = "dark-theme-yt";
   isDarkMode: boolean;
   showFiller = false;
 
@@ -21,18 +18,11 @@ export class AppComponent {
     this.isDarkMode = this.themeService.isDarkMode();
   }
 
-  toggleDarkMode() {
+  toggleDarkMode(): void {
     this.isDarkMode = this.themeService.isDarkMode();
 
     this.isDarkMode
-      ? this.themeService.update('light-mode')
-      : this.themeService.update('dark-mode');
+      ? this.themeService.update("light-mode")
+      : this.themeService.update("dark-mode");
   }
-
-  /*openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent);
-    dialogRef.afterClosed().subscribe(() => {
-      console.log(`Dialog closed`);
-    });
-  }*/
 }

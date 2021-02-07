@@ -1,30 +1,64 @@
-<form [formGroup]="commandService.form" class="normal-form">
-    <mat-grid-list cols="2" rowHeight="300px">
-        <mat-grid-tile>
-            <div class="controles-container">
-                <input type="hidden" formControlName="$key">
-                <mat-form-field>
-                    <input formControlName="howTo" matInput placeholder="HowTo">
-                    <mat-error>This field is mandatory.</mat-error>
-                    <mat-error *ngIf="commandService.form.controls['howTo'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="platform" matInput placeholder="Platform">
-                    <mat-error>Invalid email address.</mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="commandLine" matInput placeholder="CommandLine*">
-                    <mat-error>This field is mandatory.</mat-error>
-                </mat-form-field>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <div class="controles-container">
-                <div class="button-row">
-                    <button mat-raised-button color="primary" type="submit" [disabled]="commandService.form.invalid">Submit</button>
-                    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
-                </div>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
+<form autocomplete="off" #form="ngForm" style="margin: 10px">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input
+          type="hidden"
+          name="id"
+          [value]="commandDetailService.command.id"
+        />
+        <mat-form-field>
+          <input
+            name="howTo"
+            matInput
+            placeholder="HowTo"
+            ngDefaultControl
+            [(ngModel)]="commandDetailService.command.howTo"
+            required
+            maxlength="250"
+          />
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            name="platform"
+            matInput
+            placeholder="Platform"
+            ngDefaultControl
+            [(ngModel)]="commandDetailService.command.platform"
+            required
+          />
+          <mat-error>Invalid email address.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            name="commandLine"
+            matInput
+            placeholder="CommandLine"
+            ngDefaultControl
+            [(ngModel)]="commandDetailService.command.commandLine"
+            required
+          />
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <div class="controles-container">
+          <div class="button-row">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="form.invalid"
+              (click)="onSubmit(form)"
+              style="margin-right: 13px"
+            >
+              Submit
+            </button>
+            <button mat-raised-button color="warn" (click)="onClear(form)">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </form>

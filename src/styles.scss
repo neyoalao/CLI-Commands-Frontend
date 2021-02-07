@@ -47,3 +47,25 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+/* notification */
+.success {
+  background-color: #5cb85c !important;
+  color : #fff;
+  .mat-simple-snackbar-action {
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+}
+
+.warn {
+  background-color: darkred !important;
+  color : #fff;
+  .mat-simple-snackbar-action {
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+}
+
+
+

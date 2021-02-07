@@ -17,6 +17,12 @@ import {CommandComponent} from "./commands/command/command.component";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { CommandListComponent } from './commands/command-list/command-list.component';
+import {HttpClientModule} from "@angular/common/http";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
 
 // @ts-ignore
 
@@ -24,7 +30,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
   declarations: [
     AppComponent,
     CommandsComponent,
-    CommandComponent
+    CommandComponent,
+    CommandListComponent
   ],
   imports: [
     BrowserModule,
@@ -42,11 +49,18 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatInputModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+    MatTableModule
 
   ],
   providers: [CommandDetailsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CommandComponent]
 })
 // @ts-ignore
 export class AppModule { }
