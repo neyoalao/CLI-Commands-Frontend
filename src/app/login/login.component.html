@@ -1,0 +1,62 @@
+<form autocomplete="off" #form="ngForm">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            name="howTo"
+            matInput
+            placeholder="Username"
+            ngDefaultControl
+            [(ngModel)]="authenticationService.loginCredentials.username"
+            required
+            maxlength="250"
+          />
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>email</mat-label>
+          <input
+            name="platform"
+            matInput
+            placeholder="email"
+            ngDefaultControl
+            [(ngModel)]="authenticationService.loginCredentials.email"
+            required
+          />
+          <mat-error>Invalid email address.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>password</mat-label>
+          <input
+            name="commandLine"
+            matInput
+            placeholder="password"
+            ngDefaultControl
+            [(ngModel)]="authenticationService.loginCredentials.password"
+            required
+          />
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <div class="controles-container">
+          <div class="button-row">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="form.invalid"
+              (click)="onSubmit(form)"
+              style="margin-right: 13px"
+            >
+              Submit
+            </button>
+            <button mat-raised-button color="warn" (click)="onClear(form)">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

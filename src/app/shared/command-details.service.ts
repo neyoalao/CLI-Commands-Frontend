@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CommandDetails } from "./command-details.model";
 import { BehaviorSubject, Observable, Subject, Subscription } from "rxjs";
 import { tap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -17,9 +18,10 @@ export class CommandDetailsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  readonly baseUrl = "http://localhost:8080/api/v1/Commands";
+  readonly baseUrl: string = environment.baseUrl + "api/v1/Commands";
   command: CommandDetails = new CommandDetails();
   listData: CommandDetails[];
+
   // listData = this.getCommandsList().subscribe(value => {});
   //
   // using reactive form or model driven approach
@@ -42,7 +44,7 @@ export class CommandDetailsService {
 
   postCommand(): Observable<CommandDetails> {
     return this.httpClient
-      .post<CommandDetails>(this.baseUrl, this.command)
+      .post<CommandDetails>(this.baseUrl, this.command, this.getHttpOptions())
       .pipe(
         tap(() => {
           this._refreshNeeded$.next();
@@ -76,5 +78,16 @@ export class CommandDetailsService {
 
   populateForm(selectedRecord: CommandDetails): void {
     this.command = Object.assign({}, selectedRecord);
+  }
+
+  // gets an updated token for each call
+  getHttpOptions() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      }),
+    };
+
+    return httpOptions;
   }
 }
